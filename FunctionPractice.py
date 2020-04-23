@@ -53,7 +53,7 @@ def myAbs2(x):
     else:
         return x
 
-print("执行完善后的myAbs2(x)，myAbs2('a') is",myAbs2('a'))
+
 
 # 函数返回多个值
 import math
@@ -63,4 +63,67 @@ def mevo(x, y, step, angle = 0):
     return nx, ny
 
 # 是用mevo(x,y,step,angle)函数
+print("执行mevo(100,100,60,math.pi/6) is ",mevo(100,100,60,math.pi/6))
+
+#自定义函数，求 ax^2+bx+c=0的两个解
+def quadratic(a,b,c):
+    q = math.sqrt((b*b - 4*a*c))
+    x1 = (-b + q)/(2*a)
+    x2 = (-b - q)/(2*a)
+    return x1,x2
+print("执行quadratic(4,30,-3) is ",quadratic(4,30,-3))
+print(quadratic(2,3,1))
+print(quadratic(1,3,-4))
+
+def power(x,n=2):
+    s = 1
+    i = 1
+    if(n < 1):
+        raise TypeError("参数n必须大于等于1")
+    if(n == 1):
+        return s
+    while i <= n :
+        i = i+1
+        s = s*x
+    return s
+
+print("执行power(4) = ",power(4))
+print("执行power(4,3) = ",power(4,3))
+print("执行power(4,1) = ",power(4,1))
+#print("执行power(4,-3) = ",power(4,-3))
+
+def enroll(name,grander,age=6,city="海口"):
+    print("name:",name)
+    print("grander:",grander)
+    print("age:",age)
+    print("city:",city)
+
+print("执行enroll('张三','三年级') = ",enroll("张三","三年级"))
+print("执行enroll('张三','三年级',city='北京') = ",enroll("张三","三年级",city="北京"))
+print("执行enroll('张三','三年级',7) = ",enroll("张三","三年级",7))
+print("执行enroll('张三','三年级',7，,'深圳') = ",enroll("张三","三年级",7,"深圳"))
 print()
+#print("执行完善后的myAbs2(x)，myAbs2('a') is",myAbs2('a'))
+
+# 函数的参数
+
+def add_end(L=[]):
+    L.append("end")
+    return L
+
+print("执行add_end([1,3,5]) = ",add_end([1,3,5]))
+print("执行add_end([1,3,7]) = ",add_end([1,3,7]))
+print("执行add_end() = ",add_end())
+print("执行add_end() = ",add_end())
+
+#设置参数为不可变参数
+def add_end2(L=None):
+    if L is None:
+        L = []
+    L.append("end")
+    return L
+print()
+print("执行add_end2([1,3,5]) = ",add_end2([1,3,5]))
+print("执行add_end2([1,3,7]) = ",add_end2([1,3,7]))
+print("执行add_end2() = ",add_end2())
+print("执行add_end2() = ",add_end2())
