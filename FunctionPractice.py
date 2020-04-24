@@ -115,6 +115,7 @@ print("执行add_end([1,3,5]) = ",add_end([1,3,5]))
 print("执行add_end([1,3,7]) = ",add_end([1,3,7]))
 print("执行add_end() = ",add_end())
 print("执行add_end() = ",add_end())
+print()
 
 #设置参数为不可变参数
 def add_end2(L=None):
@@ -122,8 +123,93 @@ def add_end2(L=None):
         L = []
     L.append("end")
     return L
-print()
+
 print("执行add_end2([1,3,5]) = ",add_end2([1,3,5]))
 print("执行add_end2([1,3,7]) = ",add_end2([1,3,7]))
 print("执行add_end2() = ",add_end2())
 print("执行add_end2() = ",add_end2())
+print()
+
+# 不定长参数
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+
+print("执行calc(1,2,3) = ",calc(1,2,3))
+print("执行calc(1) = ",calc(1))
+print("执行calc(4,4) =",calc(4,4))
+print("执行calc() =",calc())
+nums = [1,2,3]
+nums2 = (1,2,3)
+print("将list作为不定参数传入 =",calc(*nums))
+print("将tuple作为不定参数传入 =",calc(*nums2))
+print()
+
+# 传入关键字，可以已输入0或任意个参数
+def person(name,age,**kw):
+    print("name:",name,"age:",age,"other:",kw)
+
+print("person('Jhone','30') = ",person("Jhone",30))
+print("person('Bob',23,city='BeiJin') = ",person("Bob",23,city="BeiJin"))
+print("person('Adam', 45, gender='M', job='Engineer') =",person('Adam', 45, gender='M', job='Engineer'))
+print()
+
+def person2(name,age,**kw):
+    if 'city' in kw:
+        pass
+    if 'job' in kw:
+        pass
+    print("name:", name, "age:", age, "other:", kw)
+
+print(person('Jack', 24, city='Beijing', addr='Chaoyang', zipcode=123456))
+
+# 关键字参数
+def person3(name,age,*,city,job):
+    print(name,age,city,job)
+
+print(person3("HA",23,city="BeiJin",job="IT"))
+
+def person4(name,age,*args,city,job):
+    print(name,age,args,city,job)
+
+print(person4("AM",34,2,"test",city="BeiJin",job="IT"))
+
+def person5(name,age,*,city="BeiJin",job):
+    print(name,age,city,job)
+
+print(person5("TY",44,job="IT"))
+
+def f1(a,b,c=0,*args,**kw):
+    print("a=",a," b=",b," c=",c," args=",args," kw=",kw)
+
+def f2(a,b,c=0,*,d,**kw):
+    print("a=", a, " b=", b, " c=", c, " d=",d, " kw=", kw)
+
+print()
+print(f1(1,2))
+print(f1(1, 2, c=3))
+print(f1(1, 2, 3, 'a', 'b'))
+print(f1(1, 2, 3, 'a', 'b', x=99))
+print(f2(1, 2, d=99, ext=None))
+args = (1, 2, 3, 4)
+kw = {'d': 99, 'x': '#'}
+print(f1(*args, **kw))
+args = (1, 2, 3)
+kw = {'d': 88, 'x': '#'}
+print(f2(*args, **kw))
+print()
+
+print("=============递归函数==============")
+# 阶乘
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n-1)
+
+print("执行fact(10) = ",fact(10))
+print("执行fact(1) = ",fact(1))
+print("执行fact(5) = ",fact(5))
+# 栈溢出
+#print("执行fact(1000) = ",fact(1000))
